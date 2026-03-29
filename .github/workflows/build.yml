@@ -20,6 +20,9 @@ jobs:
       - name: Install Android SDK 36
         run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
 
+      - name: Fix SDK path
+        run: echo "sdk.dir=$ANDROID_HOME" > Phoen1xGUI-master/local.properties
+
       - name: Grant execute permission
         run: chmod +x Phoen1xGUI-master/gradlew
 
