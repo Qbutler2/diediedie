@@ -21,7 +21,9 @@ jobs:
         run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
 
       - name: Fix SDK path
-        run: echo "sdk.dir=$ANDROID_HOME" > Phoen1xGUI-master/local.properties
+        run: |
+          echo "sdk.dir=$ANDROID_HOME" > Phoen1xGUI-master/local.properties
+          sed -i '/aapt2FromMavenOverride/d' Phoen1xGUI-master/gradle.properties
 
       - name: Grant execute permission
         run: chmod +x Phoen1xGUI-master/gradlew
