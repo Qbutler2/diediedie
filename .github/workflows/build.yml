@@ -1,0 +1,27 @@
+name: Build APK
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Unzip project
+        run: unzip Phoen1xGUI-master.zip
+
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Grant execute permission
+        run: chmod +x Phoen1xGUI-master/gradlew
+
+      - name: Build APK
+        run: cd Phoen1xGUI-master && ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-debug
+          path: Phoen1xGUI-master/app/build/outputs/apk/debug/app-debug.apk
