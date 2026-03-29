@@ -9,7 +9,7 @@ jobs:
       - name: Unzip project
         run: unzip Phoen1xGUI-master.zip
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -21,7 +21,7 @@ jobs:
         run: cd Phoen1xGUI-master && ./gradlew assembleDebug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-debug
           path: Phoen1xGUI-master/app/build/outputs/apk/debug/app-debug.apk
