@@ -7,7 +7,16 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Unzip project
-        run: unzip Phoen1xGUI-master.zip
+        run: |
+          unzip Phoen1xGUI-master.zip
+          # 检测是否有嵌套目录结构（zip 内有 Phoen1xGUI-master/Phoen1xGUI-master/）
+          if [ -d "Phoen1xGUI-master/Phoen1xGUI-master" ]; then
+            echo "Detected nested structure, flattening..."
+            cp -r Phoen1xGUI-master/Phoen1xGUI-master/* Phoen1xGUI-master/
+            rm -rf Phoen1xGUI-master/Phoen1xGUI-master
+          fi
+          # 验证 gradlew 存在
+          ls Phoen1xGUI-master/gradlew
 
       - uses: actions/setup-java@v4
         with:
@@ -37,7 +46,7 @@ jobs:
         run: chmod +x Phoen1xGUI-master/gradlew
 
       - name: Build APK
-        run: cd Phoen1xGUI-master && ./gradlew assembleDebug --stacktrace
+        run: cd Phoen1xGUI-master && ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
