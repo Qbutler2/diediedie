@@ -32,6 +32,7 @@ jobs:
         run: |
           echo "sdk.dir=$ANDROID_HOME" > Phoen1xGUI-master/local.properties
           sed -i '/aapt2FromMavenOverride/d' Phoen1xGUI-master/gradle.properties
+
       - name: Grant execute permission
         run: chmod +x Phoen1xGUI-master/gradlew
 
@@ -41,5 +42,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
-          path: Phoen1xGUI-master/app/build/outputs/apk/debug/app-debug.apk
+          name: WufanClient-debug
+          path: Phoen1xGUI-master/app/build/outputs/apk/debug/*.apk
