@@ -26,7 +26,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install Android SDK 36
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.1"
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
 
       - name: Fix SDK path and remove invalid local aapt2 override
         run: |
